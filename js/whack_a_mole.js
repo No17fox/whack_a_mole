@@ -31,7 +31,25 @@ window.onload = function () {
   }
 
   function resetGame() {
-    // body...
+    if (startBtn.innerHTML === 'Start!') {
+        setInnerHTMLById('start_btn', 'Restart!');
+      }
+    if (document.getElementById('title').innerHTML != 'WHACK-A-MOLE!') {
+      setInnerHTMLById('title', 'WHACK-A-MOLE!');
+    }
+    if (document.getElementById('score').innerHTML != '0') {
+      setInnerHTMLById('score', '0');
+      score = 0;
+    }
+    timeHandle = false;
+    for (let i = 0; i < holeNumber; i++) {
+      lastMolesStatus[i] = 0;
+      currentMolesStatus[i] = 0;
+    }
+  }
+
+  function setInnerHTMLById(element, string) {
+    document.getElementById(element).innerHTML = string;
   }
 
 
