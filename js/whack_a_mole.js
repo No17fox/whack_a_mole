@@ -51,6 +51,7 @@ window.onload = function () {
 
   function startGame() {
     setTimeout(timeUp, gameTime);
+    popHandle = setInterval(popUpMoles, 500);
   }
 
   function timeUp() {
@@ -70,7 +71,7 @@ window.onload = function () {
   }
 
   function randomHole() {
-    let holeId = Math.floor(Math.random() * totalholes);
+    let holeId = Math.floor(Math.random() * holeNumber);
     if (lastMolesStatus[holeId]) {
       return randomHole();
     } else {
