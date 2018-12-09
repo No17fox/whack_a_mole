@@ -64,7 +64,8 @@ window.onload = function () {
       clearInterval(popHandle);
     } else {
       let holeId = randomHole();
-
+      popAndStayAWhile(holeId);
+      lastMolesStatus = currentMolesStatus;
     }
   }
 
@@ -74,6 +75,20 @@ window.onload = function () {
       return randomHole();
     } else {
       return holeId;
+    }
+  }
+
+  function popAndStayAWhile(holeId) {
+    holes[holeId].classList.add('up');
+    currentMolesStatus[holeId] = 1;
+    for (let i = 0; i < holeNumber; i++) {
+      if (currentMolesStatus[i] === 1 && currentMolesStatus[i] != lastMolesStatus[i]) {
+        setTimeout(function () {
+          let currentId = i;
+          holes[currentId].classList.remove('up');
+          currentMolesStatus[currentId] = 0;
+        }, 2000);
+      }
     }
   }
 }
