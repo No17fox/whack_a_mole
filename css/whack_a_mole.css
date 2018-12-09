@@ -66,7 +66,7 @@ h1 {
 .hide {
   opacity: 0;
 }
-.bubbly-button {
+.bubbly_button {
   font-family: 'Helvetica', 'Arial', sans-serif;
   display: inline-block;
   font-size: 2em;
@@ -83,10 +83,10 @@ h1 {
   transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
   box-shadow: 0 2px 25px #FF9800;
 }
-.bubbly-button:focus {
+.bubbly_button:focus {
   outline: 0;
 }
-.bubbly-button:before, .bubbly-button:after {
+.bubbly_button:before, .bubbly_button:after {
   position: absolute;
   content: '';
   display: block;
@@ -97,28 +97,28 @@ h1 {
   transition: all ease-in-out 0.5s;
   background-repeat: no-repeat;
 }
-.bubbly-button:before {
+.bubbly_button:before {
   display: none;
   top: -75%;
   background-image: radial-gradient(circle, #FFA000 20%, transparent 20%), radial-gradient(circle, transparent 20%, #FFA000 20%, transparent 30%), radial-gradient(circle, #FFA000 20%, transparent 20%), radial-gradient(circle, #FFA000 20%, transparent 20%), radial-gradient(circle, transparent 10%, #FFA000 15%, transparent 20%), radial-gradient(circle, #FFA000 20%, transparent 20%), radial-gradient(circle, #FFA000 20%, transparent 20%), radial-gradient(circle, #FFA000 20%, transparent 20%), radial-gradient(circle, #FFA000 20%, transparent 20%);
   background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
 }
-.bubbly-button:after {
+.bubbly_button:after {
   display: none;
   bottom: -75%;
   background-image: radial-gradient(circle, #FFA000 20%, transparent 20%), radial-gradient(circle, #FFA000 20%, transparent 20%), radial-gradient(circle, transparent 10%, #FFA000 15%, transparent 20%), radial-gradient(circle, #FFA000 20%, transparent 20%), radial-gradient(circle, #FFA000 20%, transparent 20%), radial-gradient(circle, #FFA000 20%, transparent 20%), radial-gradient(circle, #FFA000 20%, transparent 20%);
   background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
 }
-.bubbly-button:active {
+.bubbly_button:active {
   transform: scale(0.9);
   background-color: #FF9800;
   box-shadow: 0 2px 25px #FF9800;
 }
-.bubbly-button.animate:before {
+.bubbly_button.animate:before {
   display: block;
   animation: topBubbles ease-in-out 0.75s forwards;
 }
-.bubbly-button.animate:after {
+.bubbly_button.animate:after {
   display: block;
   animation: bottomBubbles ease-in-out 0.75s forwards;
 }
