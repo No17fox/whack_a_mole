@@ -26,9 +26,6 @@ window.onload = function () {
     }, 700);
   }
 
-  function startGame() {
-    // body...
-  }
 
   function resetGame() {
     if (startBtn.innerHTML === 'Start!') {
@@ -50,6 +47,17 @@ window.onload = function () {
 
   function setInnerHTMLById(element, string) {
     document.getElementById(element).innerHTML = string;
+  }
+
+  function startGame() {
+    setTimeout(timeUp, gameTime);
+    popUpMoles();
+  }
+
+  function timeUp() {
+    startBtn.classList.remove('hide');
+    setInnerHTMLById('title', 'TIME UP!');
+    return timeHandle = true;
   }
 
 
