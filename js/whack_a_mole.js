@@ -51,7 +51,6 @@ window.onload = function () {
 
   function startGame() {
     setTimeout(timeUp, gameTime);
-    popUpMoles();
   }
 
   function timeUp() {
@@ -60,6 +59,21 @@ window.onload = function () {
     return timeHandle = true;
   }
 
+  function popUpMoles() {
+    if (timeHandle) {
+      clearInterval(popHandle);
+    } else {
+      let holeId = randomHole();
 
+    }
+  }
 
+  function randomHole() {
+    let holeId = Math.floor(Math.random() * totalholes);
+    if (lastMolesStatus[holeId]) {
+      return randomHole();
+    } else {
+      return holeId;
+    }
+  }
 }
