@@ -72,11 +72,10 @@ window.onload = function () {
 
   function randomHole() {
     let holeId = Math.floor(Math.random() * holeNumber);
-    if (lastMolesStatus[holeId]) {
-      return randomHole();
-    } else {
+    if (!lastMolesStatus[holeId]) {
       return holeId;
     }
+    return randomHole();
   }
 
   function popAndStayAWhile(holeId) {
