@@ -80,16 +80,24 @@ window.onload = function () {
   }
 
   function popAndStayAWhile(holeId) {
-    holes[holeId].classList.add('up');
-    currentMolesStatus[holeId] = 1;
+    changeMoleStatus(holeId, 'up');
     for (let i = 0; i < holeNumber; i++) {
       if (currentMolesStatus[i] === 1 && currentMolesStatus[i] != lastMolesStatus[i]) {
         setTimeout(function () {
-          let currentId = i;
-          holes[currentId].classList.remove('up');
-          currentMolesStatus[currentId] = 0;
+          let popedId = i;
+          changeMoleStatus(popedId, 'down');
         }, 2000);
       }
+    }
+  }
+
+  function changeMoleStatus(holeId, status) {
+    if (status === 'up') {
+      holes[holeId].classList.add('up');
+      currentMolesStatus[holeId] = 1;
+    } else {
+      holes[holeId].classList.remove('up');
+      currentMolesStatus[holeId] = 0;
     }
   }
 }
