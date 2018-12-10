@@ -101,11 +101,13 @@ window.onload = function () {
   }
 
   for (let i = 0; i < holeNumber; i++) {
-    moles[i].addEventListener('click', function () {
-      count();
-      setInnerHTMLById('score', score);
-      changeMoleStatus(i, 'down');
-    });
+    moles[i].addEventListener('click', () => {clickMole(i)});
+  }
+
+  function clickMole(holeId) {
+    count();
+    setInnerHTMLById('score', score);
+    changeMoleStatus(holeId, 'down');
   }
 
   function count() {
