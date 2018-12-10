@@ -79,7 +79,7 @@ window.onload = function () {
     startBtn.classList.remove('hide');
     setInnerHTMLById('title', 'TIME UP!');
     for (let i = 0; i < holeNumber; i++) {
-      moles[i].removeEventListener('click', () => {clickMole(i)});
+      changeMoleStatus(popedId, 'down');
     }
     return timeHandle = true;
   }
@@ -88,18 +88,25 @@ window.onload = function () {
     if (timeHandle) {
       clearInterval(popHandle);
     } else {
-      let holeId = randomHole();
+      let holeId = trampoline(randomHole());
       popAndStayAWhile(holeId);
       lastMolesStatus = currentMolesStatus;
     }
   }
 
+  function trampoline(fun) {
+    while (fun && fun instanceof Function) {
+      fun = fun();
+    }
+    return fun;
+  }
+
   function randomHole() {
     let holeId = Math.floor(Math.random() * holeNumber);
-    if (!lastMolesStatus[holeId]) {
-      return holeId;
+    if (lastMolesStatus[holeId]) {
+      return randomHole.bind(null);
     }
-    return randomHole();
+    return holeId;
   }
 
   function popAndStayAWhile(holeId) {
