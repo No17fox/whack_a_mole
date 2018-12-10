@@ -42,11 +42,32 @@ window.onload = function () {
     for (let i = 0; i < holeNumber; i++) {
       lastMolesStatus[i] = 0;
       currentMolesStatus[i] = 0;
+      moles[i].addEventListener('click', () => {clickMole(i)});
     }
   }
 
   function setInnerHTMLById(element, string) {
     document.getElementById(element).innerHTML = string;
+  }
+
+  function clickMole(holeId) {
+    count();
+    setInnerHTMLById('score', score);
+    changeMoleStatus(holeId, 'down');
+  }
+
+  function count() {
+    return score++;
+  }
+
+  function changeMoleStatus(holeId, status) {
+    if (status === 'up') {
+      holes[holeId].classList.add('up');
+      currentMolesStatus[holeId] = 1;
+    } else {
+      holes[holeId].classList.remove('up');
+      currentMolesStatus[holeId] = 0;
+    }
   }
 
   function startGame() {
@@ -57,6 +78,9 @@ window.onload = function () {
   function timeUp() {
     startBtn.classList.remove('hide');
     setInnerHTMLById('title', 'TIME UP!');
+    for (let i = 0; i < holeNumber; i++) {
+      moles[i].removeEventListener('click', () => {clickMole(i)});
+    }
     return timeHandle = true;
   }
 
@@ -90,27 +114,5 @@ window.onload = function () {
     }
   }
 
-  function changeMoleStatus(holeId, status) {
-    if (status === 'up') {
-      holes[holeId].classList.add('up');
-      currentMolesStatus[holeId] = 1;
-    } else {
-      holes[holeId].classList.remove('up');
-      currentMolesStatus[holeId] = 0;
-    }
-  }
 
-  for (let i = 0; i < holeNumber; i++) {
-    moles[i].addEventListener('click', () => {clickMole(i)});
-  }
-
-  function clickMole(holeId) {
-    count();
-    setInnerHTMLById('score', score);
-    changeMoleStatus(holeId, 'down');
-  }
-
-  function count() {
-    return score++;
-  }
 }
