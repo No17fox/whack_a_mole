@@ -33,25 +33,27 @@ window.onload = function () {
     if (document.getElementById('title').innerHTML != 'WHACK-A-MOLE!') {
       setInnerHTMLById('title', 'WHACK-A-MOLE!');
     }
-    if (document.getElementById('score').innerHTML != '0') {
-      setInnerHTMLById('score', '0');
+    if (document.getElementById('scoreBoard').innerHTML != '0') {
+      setInnerHTMLById('scoreBoard', '0');
       score = 0;
     }
     timeHandle = false;
-    for (let i = 0; i < holeNumber; i++) {
-      molesStatus[i] = 0;
-      moles[i].addEventListener('click', () => {clickMole(i)});
-    }
   }
 
   function setInnerHTMLById(element, string) {
     document.getElementById(element).innerHTML = string;
   }
 
-  function clickMole(holeId) {
-    count();
-    setInnerHTMLById('score', score);
+  for (let i = 0; i < holeNumber; i++) {
+    molesStatus[i] = 0;
+    moles[i].addEventListener('click', () => {clickMole(event, i)});
+  }
+
+  function clickMole(event, holeId) {
+    event.stopPropagation();
     changeMoleStatus(holeId, 'down');
+    count();
+    setInnerHTMLById('scoreBoard', score);
   }
 
   function count() {
@@ -118,6 +120,5 @@ window.onload = function () {
       changeMoleStatus(popedId, 'down');
     }, 1000);
   }
-
 
 }
