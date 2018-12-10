@@ -89,11 +89,6 @@ window.onload = function () {
     let holeId = 0;
     if (timeHandle) {
       clearInterval(popHandle);
-    } else if (lastMolesStatus === holeOverflow) {
-      for (let i = 0; i < holeNumber; i++) {
-        changeMoleStatus(i, 'down');
-      }
-      lastMolesStatus = currentMolesStatus;
     } else {
       holeId = trampoline(randomHole());
       popAndStayAWhile(holeId);
