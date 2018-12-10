@@ -8,9 +8,7 @@ window.onload = function () {
   let timeHandle = false;
   let popHandle = false;
   let score = 0;
-  let lastMolesStatus = new Array(holeNumber);
-  let currentMolesStatus = new Array(holeNumber);
-  const holeOverflow = [1, 1, 1, 1, 1, 1];
+  let molesStatus = new Array(holeNumber);
 
   startBtn.addEventListener('click', function() {
     showBtnAnimation();
@@ -41,8 +39,7 @@ window.onload = function () {
     }
     timeHandle = false;
     for (let i = 0; i < holeNumber; i++) {
-      lastMolesStatus[i] = 0;
-      currentMolesStatus[i] = 0;
+      molesStatus[i] = 0;
       moles[i].addEventListener('click', () => {clickMole(i)});
     }
   }
@@ -64,10 +61,10 @@ window.onload = function () {
   function changeMoleStatus(holeId, status) {
     if (status === 'up') {
       holes[holeId].classList.add('up');
-      currentMolesStatus[holeId] = 1;
+      molesStatus[holeId] = 1;
     } else {
       holes[holeId].classList.remove('up');
-      currentMolesStatus[holeId] = 0;
+      molesStatus[holeId] = 0;
     }
   }
 
@@ -92,7 +89,6 @@ window.onload = function () {
     } else {
       holeId = trampoline(randomHole());
       popAndStayAWhile(holeId);
-      lastMolesStatus = currentMolesStatus;
     }
   }
 
@@ -105,7 +101,7 @@ window.onload = function () {
 
   function randomHole() {
     let holeId = randomNumber(holeNumber);
-    if (lastMolesStatus[holeId]) {
+    if (molesStatus[holeId]) {
       return randomHole.bind(null);
     }
     return holeId;
