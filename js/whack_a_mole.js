@@ -100,4 +100,16 @@ window.onload = function () {
       currentMolesStatus[holeId] = 0;
     }
   }
+
+  for (let i = 0; i < holeNumber; i++) {
+    moles[i].addEventListener('click', function () {
+      count();
+      setInnerHTMLById('score', score);
+      changeMoleStatus(i, 'down');
+    });
+  }
+
+  function count() {
+    return score++;
+  }
 }
