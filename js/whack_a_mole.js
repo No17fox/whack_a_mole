@@ -10,6 +10,7 @@ window.onload = function () {
   let score = 0;
   let lastMolesStatus = new Array(holeNumber);
   let currentMolesStatus = new Array(holeNumber);
+  const holeOverflow = [1, 1, 1, 1, 1, 1];
 
   startBtn.addEventListener('click', function() {
     showBtnAnimation();
@@ -85,10 +86,16 @@ window.onload = function () {
   }
 
   function popUpMoles() {
+    let holeId = 0;
     if (timeHandle) {
       clearInterval(popHandle);
+    } else if (lastMolesStatus === holeOverflow) {
+      for (let i = 0; i < holeNumber; i++) {
+        changeMoleStatus(i, 'down');
+      }
+      lastMolesStatus = currentMolesStatus;
     } else {
-      let holeId = trampoline(randomHole());
+      holeId = trampoline(randomHole());
       popAndStayAWhile(holeId);
       lastMolesStatus = currentMolesStatus;
     }
@@ -102,23 +109,23 @@ window.onload = function () {
   }
 
   function randomHole() {
-    let holeId = Math.floor(Math.random() * holeNumber);
+    let holeId = randomNumber(holeNumber);
     if (lastMolesStatus[holeId]) {
       return randomHole.bind(null);
     }
     return holeId;
   }
 
+  function randomNumber(upperLimit) {
+    return Math.floor(Math.random() * upperLimit);
+  }
+
   function popAndStayAWhile(holeId) {
     changeMoleStatus(holeId, 'up');
-    for (let i = 0; i < holeNumber; i++) {
-      if (currentMolesStatus[i] === 1 && currentMolesStatus[i] != lastMolesStatus[i]) {
-        setTimeout(function () {
-          let popedId = i;
-          changeMoleStatus(popedId, 'down');
-        }, 1000);
-      }
-    }
+    setTimeout(function () {
+      let popedId = holeId;
+      changeMoleStatus(popedId, 'down');
+    }, 1000);
   }
 
 
