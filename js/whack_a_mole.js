@@ -85,7 +85,7 @@ window.onload = function () {
         setTimeout(function () {
           let popedId = i;
           changeMoleStatus(popedId, 'down');
-        }, 2000);
+        }, 1000);
       }
     }
   }
