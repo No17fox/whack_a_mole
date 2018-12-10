@@ -79,7 +79,7 @@ window.onload = function () {
     startBtn.classList.remove('hide');
     setInnerHTMLById('title', 'TIME UP!');
     for (let i = 0; i < holeNumber; i++) {
-      changeMoleStatus(popedId, 'down');
+      changeMoleStatus(i, 'down');
     }
     return timeHandle = true;
   }
